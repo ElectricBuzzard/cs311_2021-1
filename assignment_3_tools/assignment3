@@ -1,0 +1,206 @@
+#include <iostream>
+#include <cstdlib>
+#include <string>
+using namespace std;
+const string QUEUE_SIZE = 5;
+class Queue
+{
+ private:
+  // Data members are:                                                                                   
+  el_t el[QUEUE_SIZE]; // an array called el. Currently it is a character array.                         
+  int count; // the number of elements the queue contains                                                
+  int front;// where the front element of the queue is.                                                  
+  int rear;// where the rear element of the queue is.                                                    
+  // a private utility function for fatal error cases                                                    
+  // This displays an error messages passed to it and does exit(1);                                      
+  void queueError(string msg);
+ public:
+  Queue();
+  bool isEmpty();
+  bool isFull();
+  void add(el_t el);
+  el_t remove();
+  void displayAll();
+  el_t getFront();
+  void goToBack();
+  int getSize();
+};
+Queue::Queue()
+{
+  front = 0;
+  rear = -1;
+  count = 0;
+}
+void Queue::queueError(string msg)
+{
+  cout << msg << endl;
+  exit(1); //ends the program. 1 is returned to the operating system.                                    
+  //0 = end with no errors, 1 = end with errors //#include <cstdlib>                                     
+}
+bool Queue::isEmpty()
+{
+  if(count==0)// (front == 0 && rear == 0)                                                               
+    return true;
+else
+  return false;
+}
+bool Queue::isFull()
+{
+  if(count==QUEUE_SIZE)//QUEUE_SIZE)                                                                     
+    {
+      return true;
+    }
+  else
+    return false;
+
+}
+ostream& operator<<(ostream &out, const expr &myQueue)
+{
+
+  out<<myQueue.oprd1<<" "<<myQueue.oprt<<" "<<myQueue.oprd2<<endl;
+  return out;
+}
+void Queue::displayAll()
+{
+
+  if (isEmpty())
+    {
+      queueError("stack empty");
+    }
+  else
+    {
+      if(front<=rear)
+        {
+          for (int i = front; i <= rear; i++)//(int i = front; i < count; i++)//count for i<count        
+            {
+              cout << el[i] << " ";
+            }
+        }
+      else
+        {
+          for (int i = front; i <= count; i++)
+{
+
+              cout << el[i] << " ";
+            }
+          for (int i = 0; i <= rear; i++)
+            {
+              cout << el[i] << " ";
+            }
+        }
+      cout << endl;
+    }
+}
+
+void Queue::add(el_t p)
+{
+  if (isFull())
+    {
+      queueError("stack full");
+    }
+  else
+    {
+rear=(rear+1)%QUEUE_SIZE;
+      el[rear]=p;
+      count++;            
+    }
+}
+el_t Queue::remove()
+{
+  if (!isEmpty())
+    {
+      el_t temp = el[front];
+      front=(front+1)%QUEUE_SIZE;
+      count--;
+      return temp;
+    }
+  else
+queueError("empty");
+
+}
+int Queue::getSize()
+{
+  return count;
+}
+el_t Queue::getFront()
+{
+  if (!isEmpty())
+    {
+      return el[front];
+    }
+  else
+    queueError("empty");
+
+}
+void Queue::goToBack()
+{
+  if (isEmpty())
+    {
+      queueError("empty");
+    }
+  else if(count==1)
+    {
+}
+  else
+    {
+      el_t tem=remove();
+      add(tem);
+    }
+
+
+}
+int main()
+{
+  
+  Queue q;
+string choice;
+int x;//enemy this shows amount of confesses
+int y;//enemy this shows amount of slientes 
+do{
+if(x==0&&y==0)
+cout<<"slient";
+else if(x>y)
+cout<<"confess";
+else
+cout<<"slient";
+cin>>choice;
+  if(choice=="confess")
+  {
+  if(!q.isFull())
+  {    
+  q.add(choice);
+  x++;
+    }
+    else
+          {
+          q.remove();
+          q.add(choice);
+          x++;  
+            }
+            }
+ if(choice=="confess")
+  { 
+  if(choice=="slient")
+  if(!q.isFull())
+  {    
+  q.add(choice);
+  y++;      
+    }   
+    else
+     {
+    q.remove();
+    q.add(choice);
+    y++;    
+    } 
+     
+  }
+  
+  }while(choice=="0")
+return 0;
+}
+  
+    
+            
+            
+            
+            
