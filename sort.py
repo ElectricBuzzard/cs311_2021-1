@@ -23,9 +23,9 @@ def recursive_selection_sort(a, n, index=0):
 nums = [random.randint(1,10),random.randint(1,10),random.randint(1,10),random.randint(1,10),random.randint(1,10)]
 data_length = len(nums)
 
-print('Before sorting',nums)
+print('Before selection sort',nums)
 recursive_selection_sort(nums, data_length)
-print('After sorting ',nums)
+print('After slection sort ',nums)
 
 def bubbleSort(a):
     start_time=time.time()
@@ -42,10 +42,9 @@ def bubbleSort(a):
 
 a = [random.randint(1,10),random.randint(1,10),random.randint(1,10),random.randint(1,10),random.randint(1,10)]
 
-print("before",a)
+print("before bubble sort",a)
 bubbleSort(a)
-print("after",a)
-
+print("after bubble sort",a)
 
 
 
