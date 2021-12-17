@@ -25,7 +25,7 @@ data_length = len(nums)
 
 print('Before selection sort',nums)
 recursive_selection_sort(nums, data_length)
-print('After slection sort ',nums)
+print('After selection sort ',nums)
 
 def bubbleSort(a):
     start_time=time.time()
